@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
     Route::patch('/admin/posts/{post}', [PostController::class, 'update']);
     Route::delete('/admin/posts/{post}', [PostController::class, 'destroy']);
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('/admin', [AdminController::class, 'index'])->middleware('auth:sanctum');
